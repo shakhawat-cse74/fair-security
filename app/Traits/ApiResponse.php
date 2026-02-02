@@ -2,70 +2,42 @@
 
 namespace App\Traits;
 
+use Illuminate\Http\JsonResponse;
+
 trait ApiResponse
 {
     /**
-     * Send a success JSON response.
+     * Success Response
+     *
+     * @param mixed $data
+     * @param string|null $message
+     * @param int $code
+     * @return JsonResponse
      */
-    protected function success($data = null, $message = 'Success', $code = 200, $meta = [])
+    protected function successResponse($data, $message = null, $code = 200): JsonResponse
     {
         return response()->json([
-            'success' => true,
+            'status' => true,
             'message' => $message,
-            'data'    => $data,
-            'meta'    => (object) $meta, 
-            'code'    => $code,
+            'data' => $data,
+            'code' => $code
         ], $code);
     }
 
     /**
-     * Send a generic error JSON response.
+     * Error Response
+     *
+     * @param string|null $message
+     * @param int $code
+     * @return JsonResponse
      */
-    protected function error($message = 'Something went wrong', $code = 500, $data = null)
+    protected function errorResponse($message = null, $code = 500): JsonResponse
     {
         return response()->json([
-            'success' => false,
+            'status' => false,
             'message' => $message,
-            'data'    => $data,
-            'code'    => $code,
-        ], $code);
-    }
-
-    /**
-     * Send a validation error JSON response.
-     */
-    protected function validationError($errors = [], $message = 'Validation Error', $code = 422)
-    {
-        return response()->json([
-            'success' => false,
-            'message' => $message,
-            'errors'  => $errors,
-            'code'    => $code,
-        ], $code);
-    }
-
-    /**
-     * Send a bad request JSON response (for invalid inputs or logic errors).
-     */
-    protected function badRequest($message = 'Bad Request', $data = null, $code = 400)
-    {
-        return response()->json([
-            'success' => false,
-            'message' => $message,
-            'data'    => $data,
-            'code'    => $code,
-        ], $code);
-    }
-
-    /**
-     * Send an unauthorized response.
-     */
-    protected function unauthorized($message = 'Unauthorized', $code = 401)
-    {
-        return response()->json([
-            'success' => false,
-            'message' => $message,
-            'code'    => $code,
+            'data' => null,
+            'code' => $code
         ], $code);
     }
 }
