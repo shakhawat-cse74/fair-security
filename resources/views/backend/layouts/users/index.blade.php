@@ -29,7 +29,7 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="users-table">
+                <table class="table table-bordered table-striped" id="users-table">
                     <thead>
                         <tr>
                             <th width="5%">SL No</th>

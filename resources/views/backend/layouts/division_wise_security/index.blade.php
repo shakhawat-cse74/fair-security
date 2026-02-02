@@ -29,7 +29,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered text-nowrap border-bottom" id="division-wise-security-table">
+                <table class="table table-bordered table-striped" id="division-wise-security-table">
                     <thead>
                         <tr>
                             <th>SL No</th>

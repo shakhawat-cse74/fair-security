@@ -27,7 +27,7 @@ class PartnerController extends Controller
 
             ->addColumn('logo', function ($row) {
                 $url = $row->logo ? asset($row->logo) : asset('admin/assets/images/default.png');
-                return '<img src="' . $url . '" class="rounded" width="100" height="40" />';
+                return '<img src="' . $url . '" class="rounded" width="50" height="50" style="object-fit: cover;" />';
             })
 
             ->addColumn('status', function ($row) {

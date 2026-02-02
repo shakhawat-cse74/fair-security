@@ -29,7 +29,7 @@
 
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered text-nowrap border-bottom" id="vissions-table">
+                <table class="table table-bordered table-striped" id="vissions-table">
                     <thead>
                         <tr>
                             <th>SL No</th>

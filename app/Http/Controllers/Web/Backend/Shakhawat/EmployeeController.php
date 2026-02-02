@@ -24,8 +24,8 @@ class EmployeeController extends Controller
             })
 
             ->addColumn('photo', function ($row) {
-                $url = $row->photo ? asset($row->photo) : asset('admin/assets/images/users/1.jpg');
-                return '<img src="' . $url . '" class="rounded-circle" width="35" height="35" />';
+                $url = $row->photo ? asset($row->photo) : asset('admin/assets/images/default.png');
+                return '<img src="' . $url . '" class="rounded" width="50" height="50" style="object-fit: cover;" />';
             })
 
             ->addColumn('status', function ($row) {

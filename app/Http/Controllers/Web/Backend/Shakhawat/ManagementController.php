@@ -23,8 +23,8 @@ class ManagementController extends Controller
             })
 
             ->addColumn('image', function ($row) {
-                $url = $row->image ? asset($row->image) : asset('admin/assets/images/users/1.jpg');
-                return '<img src="' . $url . '" class="rounded-circle" width="35" height="35" />';
+                $url = $row->image ? asset($row->image) : asset('admin/assets/images/default.png');
+                return '<img src="' . $url . '" class="rounded" width="50" height="50" style="object-fit: cover;" />';
             })
 
             ->addColumn('status', function ($row) {

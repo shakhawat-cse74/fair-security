@@ -27,13 +27,13 @@ class GalleryController extends Controller
 
                 if (!$images || !is_array($images)) {
                     $url = asset('admin/assets/images/default.png');
-                    return '<img src="' . $url . '" width="100" height="40" class="rounded" />';
+                    return '<img src="' . $url . '" width="50" height="50" class="rounded" style="object-fit: cover;" />';
                 }
 
                 $html = '';
                 foreach ($images as $img) {
                     $url = asset($img);
-                    $html .= '<img src="' . $url . '" width="60" height="40" class="me-1 mb-1 rounded" />';
+                    $html .= '<img src="' . $url . '" width="50" height="50" class="me-1 mb-1 rounded" style="object-fit: cover;" />';
                 }
 
                 return $html;
