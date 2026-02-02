@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('division_wise_securities', function (Blueprint $table) {
             $table->id();
             $table->string('division_name');
-            $table->string('security_qty')->nullable();
+            $table->integer('security_qty')->nullable();
             $table->string('security_purpose')->nullable();
             $table->string('deployment_area')->nullable();
-            $table->string('support_staff')->nullable();
-            $table->string('total_employees')->nullable();
+            $table->integer('support_staff')->nullable();
+            $table->integer('total_employees')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

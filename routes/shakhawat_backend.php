@@ -17,6 +17,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\PartnerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\GalleryController;
 use App\Http\Controllers\Web\Backend\Shakhawat\OurJourneyController;
 use App\Http\Controllers\Web\Backend\Shakhawat\OurServicesController;
+use App\Http\Controllers\Web\Backend\Shakhawat\DivisionWiseSecurityController;
 
 
 
@@ -163,5 +164,16 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         Route::post('/our-services/{id}', [OurServicesController::class, 'update'])->name('our-services.update');
         Route::post('/our-services/{id}/status', [OurServicesController::class, 'updateStatus'])->name('our-services.updateStatus');
         Route::delete('/our-services/{id}', [OurServicesController::class, 'destroy'])->name('our-services.destroy');
+
+        //Division Wise Security Management
+        Route::get('/division-wise-security', [DivisionWiseSecurityController::class, 'index'])->name('division-wise-security.index');
+        Route::get('/division-wise-security/create', [DivisionWiseSecurityController::class, 'create'])->name('division-wise-security.create');
+        Route::post('/division-wise-security', [DivisionWiseSecurityController::class, 'store'])->name('division-wise-security.store');
+        Route::get('/division-wise-security/data', [DivisionWiseSecurityController::class, 'getData'])->name('division-wise-security.data'); 
+        Route::get('/division-wise-security/{id}/show', [DivisionWiseSecurityController::class, 'show'])->name('division-wise-security.show');
+        Route::get('/division-wise-security/{id}/edit', [DivisionWiseSecurityController::class, 'edit'])->name('division-wise-security.edit');
+        Route::post('/division-wise-security/{id}', [DivisionWiseSecurityController::class, 'update'])->name('division-wise-security.update');
+        Route::post('/division-wise-security/{id}/status', [DivisionWiseSecurityController::class, 'updateStatus'])->name('division-wise-security.updateStatus');
+        Route::delete('/division-wise-security/{id}', [DivisionWiseSecurityController::class, 'destroy'])->name('division-wise-security.destroy');
         
 });

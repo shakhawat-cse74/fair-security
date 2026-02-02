@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\DivisionWiseSecurity;
 use Yajra\DataTables\Facades\DataTables;
-use App\Services\ImageService;
+use Exception;
 
 
 class DivisionWiseSecurityController extends Controller
@@ -69,7 +69,7 @@ class DivisionWiseSecurityController extends Controller
         }
     }
 
-    public function store(Request $request, ImageService $imageService)
+    public function store(Request $request)
     {
         $request->validate([
             'division_name' => 'required|string|max:255',
@@ -88,7 +88,7 @@ class DivisionWiseSecurityController extends Controller
             $divisionWiseSecurity->security_purpose = $request->security_purpose;
             $divisionWiseSecurity->deployment_area = $request->deployment_area;
             $divisionWiseSecurity->support_staff = $request->support_staff;
-            $divisionWiseSecurity->total_employees = $request->security_qty + $request->support_staff;
+            $divisionWiseSecurity->total_employees = $request->security_qty + ($request->support_staff ?? 0);
             $divisionWiseSecurity->status = $request->status ?? 1;
             $divisionWiseSecurity->save();
 
@@ -108,7 +108,7 @@ class DivisionWiseSecurityController extends Controller
         }
     }
 
-    public function update(Request $request, $id, ImageService $imageService)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'division_name' => 'required|string|max:255',
@@ -127,7 +127,7 @@ class DivisionWiseSecurityController extends Controller
             $divisionWiseSecurity->security_purpose = $request->security_purpose;
             $divisionWiseSecurity->deployment_area = $request->deployment_area;
             $divisionWiseSecurity->support_staff = $request->support_staff;
-            $divisionWiseSecurity->total_employees = $request->security_qty + $request->support_staff;
+            $divisionWiseSecurity->total_employees = $request->security_qty + ($request->support_staff ?? 0);
             $divisionWiseSecurity->status = $request->status ?? 1;
             $divisionWiseSecurity->save();
 
