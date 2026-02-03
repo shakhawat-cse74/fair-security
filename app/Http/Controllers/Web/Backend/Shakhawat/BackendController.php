@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Web\Backend\Shakhawat;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Partner;
+use App\Models\Employee;
+use App\Models\Management;
+use App\Models\Contact;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Log;
@@ -13,17 +17,19 @@ class BackendController extends Controller
 {
     public function index()
     {
-        // Only guests
-        $totalGuests = User::where('is_guest', true)->count();
-        // $totalDiscussions = DB::table('discussions')->count(); 
-        // $totalReplies = DB::table('replies')->count();
-        // $totalReactions = DB::table('reactions')->count();
+        // Stats
+        $totalPartners = $this->safeCount(Partner::class);
+        $totalEmployees = $this->safeCount(Employee::class);
+        $totalManagement = $this->safeCount(Management::class);
 
-        $recentGuests = User::where('is_guest', true)->latest()->take(10)->get();
+        // Recent Items
+        $recentPartners = Partner::latest()->take(5)->get();
+        $recentContacts = Contact::latest()->take(5)->get();
 
         // Chart last 10 months
         $chartLabels = [];
-        $guestChartData = [];
+        $contactChartData = [];
+        $partnerChartData = [];
 
         for($i=9; $i>=0; $i--){
             $date = Carbon::now()->subMonths($i);
@@ -31,12 +37,19 @@ class BackendController extends Controller
             $end = $date->copy()->endOfMonth();
 
             $chartLabels[] = $date->format('M Y');
-            $guestChartData[] = User::where('is_guest', true)->whereBetween('created_at', [$start,$end])->count();
+            $contactChartData[] = $this->safeCountBetween(Contact::class, $start, $end);
+            $partnerChartData[] = $this->safeCountBetween(Partner::class, $start, $end);
         }
 
         return view('backend.layouts.home.index', compact(
-            'totalGuests',
-            'recentGuests','chartLabels','guestChartData'
+            'totalPartners',
+            'totalEmployees',
+            'totalManagement',
+            'recentPartners',
+            'recentContacts',
+            'chartLabels',
+            'contactChartData',
+            'partnerChartData'
         ));
     }
 

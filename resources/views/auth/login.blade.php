@@ -122,11 +122,11 @@
                                     Login
                                 </button>
                             </div>
-                            <div class="text-center pt-3">
+                            <!-- <div class="text-center pt-3">
                                 <a href="{{ route('register') }}" class="create-account-link">
                                     Create an Account
                                 </a>
-                            </div>
+                            </div> -->
 
                         </form>
 

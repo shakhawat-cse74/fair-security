@@ -209,53 +209,65 @@
     <!-- ===== Stat Cards ===== -->
     <div class="stats-grid">
         <div class="stat-card">
+            <div class="stat-icon">🤝</div>
+            <div class="stat-info">
+                <p>Total Partners</p>
+                <h2>{{ number_format($totalPartners) }}</h2>
+                <div class="stat-trend">⬆ Active Partners</div>
+            </div>
+        </div>
+        <div class="stat-card">
             <div class="stat-icon">👥</div>
             <div class="stat-info">
-                <p>Total Guests</p>
-                <h2>{{ number_format($totalGuests) }}</h2>
-                <div class="stat-trend">⬆ Active Users</div>
+                <p>Total Employess</p>
+                <h2>{{ number_format($totalEmployees) }}</h2>
+                <div class="stat-trend">⬆ Team Members</div>
             </div>
         </div>
         <div class="stat-card">
-            <div class="stat-icon">💬</div>
+            <div class="stat-icon">👔</div>
             <div class="stat-info">
-                <p>Total Replies</p>
-                <div class="stat-trend">⬆ Conversations</div>
-            </div>
-        </div>
-        <div class="stat-card">
-            <div class="stat-icon">❤️</div>
-            <div class="stat-info">
-                <p>Total Reactions</p>
-                <div class="stat-trend">⬆ Engagement</div>
+                <p>Total Management</p>
+                <h2>{{ number_format($totalManagement) }}</h2>
+                <div class="stat-trend">⬆ Management Team</div>
             </div>
         </div>
     </div>
 
     <!-- ===== Tables ===== -->
     <div class="row g-4 mb-4">
+        <!-- Recent Partners -->
         <div class="col-lg-6">
             <div class="content-card">
-                <h5>Newest Guests</h5>
+                <h5>Recent Five Partners</h5>
                 <div class="table-responsive">
                     <table class="table table-modern">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Role</th>
-                                <th>Joined</th>
+                                <th>Logo</th>
+                                <th>Company</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse($recentGuests as $guest)
+                            @forelse($recentPartners as $partner)
                                 <tr>
-                                    <td>{{ $guest->name }}</td>
-                                    <td>Guest</td>
-                                    <td>{{ $guest->created_at->format('M d, Y') }}</td>
+                                    <td>
+                                        <img src="{{ $partner->logo ? asset($partner->logo) : asset('admin/assets/images/default.png') }}"
+                                            alt="logo" class="rounded-circle" width="40" height="40">
+                                    </td>
+                                    <td>{{ $partner->company_name }}</td>
+                                    <td>
+                                        @if($partner->status == 1)
+                                            <span class="badge bg-success">Active</span>
+                                        @else
+                                            <span class="badge bg-danger">Inactive</span>
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3">No guests found</td>
+                                    <td colspan="3" class="text-center">No partners found</td>
                                 </tr>
                             @endforelse
                         </tbody>
@@ -264,20 +276,52 @@
             </div>
         </div>
 
+        <!-- Recent Contacts -->
+        <div class="col-lg-6">
+            <div class="content-card">
+                <h5>Recent Five Contacts</h5>
+                <div class="table-responsive">
+                    <table class="table table-modern">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Service Type</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($recentContacts as $contact)
+                                <tr>
+                                    <td>{{ $contact->name }}</td>
+                                    <td>{{ $contact->phone }}</td>
+                                    <td>{{ $contact->service_type }}</td>
+                                    <td>{{ $contact->created_at->format('M d, Y') }}</td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">No contacts found</td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- ===== Charts ===== -->
     <div class="row g-4">
         <div class="col-lg-6">
             <div class="content-card">
-                <h5>Guest Overview</h5>
-                <div class="chart-wrapper"><canvas id="guestChart"></canvas></div>
+                <h5>Contact Overview</h5>
+                <div class="chart-wrapper"><canvas id="contactChart"></canvas></div>
             </div>
         </div>
         <div class="col-lg-6">
-            <div class="content-card d-flex flex-column align-items-center justify-content-center">
-                <h5 class="w-100 text-center">Content Distribution</h5>
-                <div class="chart-wrapper"><canvas id="contentChart"></canvas></div>
+            <div class="content-card">
+                <h5>Partner Overview</h5>
+                <div class="chart-wrapper"><canvas id="partnerChart"></canvas></div>
             </div>
         </div>
     </div>
@@ -321,14 +365,14 @@
         updateGreeting();
         setInterval(updateGreeting, 60000);
 
-        // ===== Chart 1: Guest Overview =====
-        new Chart(document.getElementById('guestChart'), {
+        // ===== Chart 1: Contact Overview =====
+        new Chart(document.getElementById('contactChart'), {
             type: 'bar',
             data: {
                 labels: {!! json_encode($chartLabels) !!},
                 datasets: [{
-                    label: 'Guests',
-                    data: {!! json_encode($guestChartData) !!},
+                    label: 'Contacts',
+                    data: {!! json_encode($contactChartData) !!},
                     backgroundColor: ['#667eea', '#764ba2', '#11998e', '#38ef7d', '#ee0979', '#ff6a00'],
                     borderRadius: 12,
                     borderSkipped: false
@@ -357,15 +401,15 @@
             }
         });
 
-        // ===== Chart 2: Content Distribution =====
-        new Chart(document.getElementById('contentChart'), {
+        // ===== Chart 2: Partner Overview =====
+        new Chart(document.getElementById('partnerChart'), {
             type: 'doughnut',
             data: {
-                labels: ['Discussions', 'Replies', 'Reactions'],
+                labels: {!! json_encode($chartLabels) !!},
                 datasets: [{
-                    data: [
-                    ],
-                    backgroundColor: ['#667eea', '#ee0979', '#fc4a1a'],
+                    label: 'Partners',
+                    data: {!! json_encode($partnerChartData) !!},
+                    backgroundColor: ['#fc4a1a', '#f7b733', '#11998e', '#38ef7d', '#667eea', '#764ba2'],
                     borderWidth: 4,
                     borderColor: '#fff'
                 }]
@@ -378,7 +422,7 @@
                         position: 'bottom'
                     },
                     tooltip: {
-                        callbacks: {
+                         callbacks: {
                             label: ctx => `${ctx.label}: ${ctx.raw.toLocaleString()}`
                         }
                     }
