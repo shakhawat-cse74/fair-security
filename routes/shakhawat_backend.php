@@ -22,6 +22,8 @@ use App\Http\Controllers\Web\Backend\Shakhawat\AboutPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ServicePageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ContactPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ManagementPageBannerController;
+use App\Http\Controllers\Web\Backend\Shakhawat\SecurityPageBannerController;
+
 
 
 
@@ -136,6 +138,16 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::delete('/management-page-banners/{id}', [ManagementPageBannerController::class, 'destroy'])->name('management-page-banners.destroy');
 
     
+    //Security Page Banner Management
+    Route::get('/security-page-banners', [SecurityPageBannerController::class, 'index'])->name('security-page-banners.index');
+    Route::get('/security-page-banners/create', [SecurityPageBannerController::class, 'create'])->name('security-page-banners.create');
+    Route::post('/security-page-banners', [SecurityPageBannerController::class, 'store'])->name('security-page-banners.store');
+    Route::get('/security-page-banners/data', [SecurityPageBannerController::class, 'getData'])->name('security-page-banners.data');
+    Route::get('/security-page-banners/{id}/show', [SecurityPageBannerController::class, 'show'])->name('security-page-banners.show');
+    Route::get('/security-page-banners/{id}/edit', [SecurityPageBannerController::class, 'edit'])->name('security-page-banners.edit');
+    Route::post('/security-page-banners/{id}', [SecurityPageBannerController::class, 'update'])->name('security-page-banners.update');
+    Route::post('/security-page-banners/{id}/status', [SecurityPageBannerController::class, 'UpdateStatus'])->name('security-page-banners.updateStatus');
+    Route::delete('/security-page-banners/{id}', [SecurityPageBannerController::class, 'destroy'])->name('security-page-banners.destroy');
 
     //Management Management
     Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
