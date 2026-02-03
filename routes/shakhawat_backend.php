@@ -23,6 +23,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\ServicePageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ContactPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ManagementPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\SecurityPageBannerController;
+use App\Http\Controllers\Web\Backend\Shakhawat\CertificationPageBannerController;
 
 
 
@@ -148,6 +149,19 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/security-page-banners/{id}', [SecurityPageBannerController::class, 'update'])->name('security-page-banners.update');
     Route::post('/security-page-banners/{id}/status', [SecurityPageBannerController::class, 'UpdateStatus'])->name('security-page-banners.updateStatus');
     Route::delete('/security-page-banners/{id}', [SecurityPageBannerController::class, 'destroy'])->name('security-page-banners.destroy');
+
+    //Certification Page Banner Management
+    Route::get('/certification-page-banners', [CertificationPageBannerController::class, 'index'])->name('certification-page-banners.index');
+    Route::get('/certification-page-banners/create', [CertificationPageBannerController::class, 'create'])->name('certification-page-banners.create');
+    Route::post('/certification-page-banners', [CertificationPageBannerController::class, 'store'])->name('certification-page-banners.store');
+    Route::get('/certification-page-banners/data', [CertificationPageBannerController::class, 'getData'])->name('certification-page-banners.data');
+    Route::get('/certification-page-banners/{id}/show', [CertificationPageBannerController::class, 'show'])->name('certification-page-banners.show');
+    Route::get('/certification-page-banners/{id}/edit', [CertificationPageBannerController::class, 'edit'])->name('certification-page-banners.edit');
+    Route::post('/certification-page-banners/{id}', [CertificationPageBannerController::class, 'update'])->name('certification-page-banners.update');
+    Route::post('/certification-page-banners/{id}/status', [CertificationPageBannerController::class, 'UpdateStatus'])->name('certification-page-banners.updateStatus');
+    Route::delete('/certification-page-banners/{id}', [CertificationPageBannerController::class, 'destroy'])->name('certification-page-banners.destroy');
+
+    
 
     //Management Management
     Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
