@@ -140,7 +140,7 @@ $(document).ready(function () {
         let status = $(this).is(':checked') ? 1 : 0;
 
         $.ajax({
-            url: '/missions/' + id + '/status',
+            url: '/our-services/' + id + '/status',
             type: 'POST',
             data: {
                 _token: csrfToken,

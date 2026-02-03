@@ -18,6 +18,8 @@ use App\Http\Controllers\Api\Backend\ContactPageBannerController;
 use App\Http\Controllers\Api\Backend\ManagementPageBannerController;
 use App\Http\Controllers\Api\Backend\SecuritytPageBannerController;
 use App\Http\Controllers\Api\Backend\CertificationPageBannerController;
+use App\Http\Controllers\Api\Backend\ContactController;
+
 
 
 Route::get('/branches', [BranchController::class, 'index']);
@@ -49,3 +51,5 @@ Route::get('/management/{id}', [ManagementController::class, 'show']);
 Route::get('/galleries', [GalleryController::class, 'index']);
 
 Route::get('/partners', [PartnerController::class, 'index']);
+
+Route::post('/contacts', [ContactController::class, 'store']);
