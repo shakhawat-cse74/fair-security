@@ -16,15 +16,17 @@ use App\Http\Controllers\Api\Backend\AboutPageBannerController;
 use App\Http\Controllers\Api\Backend\ServicePageBannerController;
 use App\Http\Controllers\Api\Backend\ContactPageBannerController;
 use App\Http\Controllers\Api\Backend\ManagementPageBannerController;
+use App\Http\Controllers\Api\Backend\SecuritytPageBannerController;
 
-
-Route::get('/banners', [BannerController::class, 'index']);
 
 Route::get('/branches', [BranchController::class, 'index']);
+
+Route::get('/banners', [BannerController::class, 'index']);
 Route::get('/about-page-banners', [AboutPageBannerController::class, 'index']);
 Route::get('/service-page-banners', [ServicePageBannerController::class, 'index']);
 Route::get('/contact-page-banners', [ContactPageBannerController::class, 'index']);
 Route::get('/management-page-banners', [ManagementPageBannerController::class, 'index']);
+Route::get('/security-page-banners', [SecuritytPageBannerController::class, 'index']);
 
 Route::get('/division-wise-securities', [DivisionWiseSecurityController::class, 'index']);
 
