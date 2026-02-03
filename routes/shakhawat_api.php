@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\Backend\OurServicesController;
 use App\Http\Controllers\Api\Backend\OurJourneyController;
 use App\Http\Controllers\Api\Backend\ManagementController;
 use App\Http\Controllers\Api\Backend\GalleryController;
+use App\Http\Controllers\Api\Backend\PartnerController;
 
 
 Route::get('/banners', [BannerController::class, 'index']);
@@ -34,3 +35,5 @@ Route::get('/managements', [ManagementController::class, 'index']);
 Route::get('/management/{id}', [ManagementController::class, 'show']);
 
 Route::get('/galleries', [GalleryController::class, 'index']);
+
+Route::get('/partners', [PartnerController::class, 'index']);
