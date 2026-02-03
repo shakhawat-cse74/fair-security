@@ -37,7 +37,7 @@ class ImageService
 
     public function deleteImage($imagePath)
     {
-        if ($imagePath) {
+        if ($imagePath && $imagePath !== 'admin/assets/images/default.png') {
             $fullPath = public_path($imagePath);
             if (file_exists($fullPath)) {
                 unlink($fullPath);

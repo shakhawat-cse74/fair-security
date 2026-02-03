@@ -75,6 +75,8 @@ class VissionController extends Controller
             if ($request->hasFile('image')) {
                 $imagePath = $imageService->uploadImage($request->file('image'), 'uploads/vissions');
                 $vission->image = $imagePath;
+            } else {
+                $vission->image = 'admin/assets/images/default.png';
             }
 
             $vission->save();

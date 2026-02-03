@@ -75,6 +75,8 @@ class MissionController extends Controller
             if ($request->hasFile('image')) {
                 $imagePath = $imageService->uploadImage($request->file('image'), 'uploads/missions');
                 $mission->image = $imagePath;
+            } else {
+                $mission->image = 'admin/assets/images/default.png';
             }
 
             $mission->save();

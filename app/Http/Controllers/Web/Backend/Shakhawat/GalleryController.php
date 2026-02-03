@@ -82,6 +82,8 @@ class GalleryController extends Controller
                 foreach ($request->file('image') as $file) {
                     $imagePaths[] = $imageService->uploadImage($file, 'uploads/galleries');
                 }
+            } else {
+                $imagePaths[] = 'admin/assets/images/default.png';
             }
 
             $gallery->image = json_encode($imagePaths);

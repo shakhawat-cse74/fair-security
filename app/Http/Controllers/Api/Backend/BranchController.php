@@ -14,10 +14,7 @@ class BranchController extends Controller
     public function index()
     {
         try {
-            $branches = Branch::where('status', 1)->get()->map(function ($branch) {
-                $branch->image = $branch->image ? asset($branch->image) : asset('admin/assets/images/default.png');
-                return $branch;
-            });
+            $branches = Branch::where('status', 1)->get();
             return $this->successResponse($branches, 'Branches retrieved successfully.');
         } catch (\Exception $e) {
             return $this->errorResponse('Failed to retrieve branches.', 500);

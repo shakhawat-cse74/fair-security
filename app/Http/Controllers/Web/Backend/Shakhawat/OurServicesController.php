@@ -75,6 +75,8 @@ class OurServicesController extends Controller
             if ($request->hasFile('image')) {
                 $imagePath = $imageService->uploadImage($request->file('image'), 'uploads/our_services');
                 $ourService->image = $imagePath;
+            } else {
+                $ourService->image = 'admin/assets/images/default.png';
             }
 
             $ourService->save();

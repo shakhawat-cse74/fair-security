@@ -85,6 +85,8 @@ class ManagementController extends Controller
             if ($request->hasFile('image')) {
                 $imagePath = $imageService->uploadImage($request->file('image'), 'management_images');
                 $management->image = $imagePath;
+            } else {
+                $management->image = 'admin/assets/images/default.png';
             }
 
             $management->save();

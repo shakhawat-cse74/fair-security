@@ -75,6 +75,8 @@ class OurJourneyController extends Controller
             if ($request->hasFile('image')) {
                 $imagePath = $imageService->uploadImage($request->file('image'), 'uploads/our_journeys');
                 $ourJourney->image = $imagePath;
+            } else {
+                $ourJourney->image = 'admin/assets/images/default.png';
             }
 
             $ourJourney->save();

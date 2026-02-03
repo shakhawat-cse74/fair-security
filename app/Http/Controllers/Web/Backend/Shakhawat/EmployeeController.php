@@ -85,6 +85,8 @@ class EmployeeController extends Controller
             if ($request->hasFile('photo')) {
                 $imagePath = $imageService->uploadImage($request->file('photo'), 'uploads/employees', 300, 300);
                 $employee->photo = $imagePath;
+            } else {
+                $employee->photo = 'admin/assets/images/default.png';
             }
 
             $employee->designation = $request->designation;

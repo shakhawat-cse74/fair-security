@@ -64,7 +64,7 @@ class BannerController extends Controller
             $request->validate([
                 'title'     => 'nullable|string|max:255',
                 'sub_title' => 'nullable|string|max:255',
-                'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+                'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
                 'status'    => 'nullable|boolean',
             ]);
 
@@ -73,6 +73,8 @@ class BannerController extends Controller
             $banner->sub_title = $request->sub_title;
             if ($request->hasFile('image')) {
                 $banner->image = $imageService->uploadImage($request->file('image'), 'uploads/banners', 1200, 400);
+            } else {
+                $banner->image = 'admin/assets/images/default.png';
             }
             $banner->status = $request->status ?? 1;
             $banner->save();
@@ -99,7 +101,7 @@ class BannerController extends Controller
             $request->validate([
                 'title'     => 'nullable|string|max:255',
                 'sub_title' => 'nullable|string|max:255',
-                'image'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
+                'image'     => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
                 'status'    => 'nullable|boolean',
             ]);
 
