@@ -21,6 +21,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\DivisionWiseSecurityController;
 use App\Http\Controllers\Web\Backend\Shakhawat\AboutPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ServicePageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ContactPageBannerController;
+use App\Http\Controllers\Web\Backend\Shakhawat\ManagementPageBannerController;
 
 
 
@@ -122,6 +123,17 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/contact-page-banners/{id}', [ContactPageBannerController::class, 'update'])->name('contact-page-banners.update');
     Route::post('/contact-page-banners/{id}/status', [ContactPageBannerController::class, 'UpdateStatus'])->name('contact-page-banners.updateStatus');
     Route::delete('/contact-page-banners/{id}', [ContactPageBannerController::class, 'destroy'])->name('contact-page-banners.destroy');
+
+    //Management Page Banner Management
+    Route::get('/management-page-banners', [ManagementPageBannerController::class, 'index'])->name('management-page-banners.index');
+    Route::get('/management-page-banners/create', [ManagementPageBannerController::class, 'create'])->name('management-page-banners.create');
+    Route::post('/management-page-banners', [ManagementPageBannerController::class, 'store'])->name('management-page-banners.store');
+    Route::get('/management-page-banners/data', [ManagementPageBannerController::class, 'getData'])->name('management-page-banners.data');
+    Route::get('/management-page-banners/{id}/show', [ManagementPageBannerController::class, 'show'])->name('management-page-banners.show');
+    Route::get('/management-page-banners/{id}/edit', [ManagementPageBannerController::class, 'edit'])->name('management-page-banners.edit');
+    Route::post('/management-page-banners/{id}', [ManagementPageBannerController::class, 'update'])->name('management-page-banners.update');
+    Route::post('/management-page-banners/{id}/status', [ManagementPageBannerController::class, 'UpdateStatus'])->name('management-page-banners.updateStatus');
+    Route::delete('/management-page-banners/{id}', [ManagementPageBannerController::class, 'destroy'])->name('management-page-banners.destroy');
 
     
 

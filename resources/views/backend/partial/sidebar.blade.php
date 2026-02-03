@@ -45,6 +45,7 @@
                         <li><a href="{{ route('about-page-banners.index') }}" class="slide-item">Manage About Page Banner</a></li>
                         <li><a href="{{ route('service-page-banners.index') }}" class="slide-item">Manage Service Page Banner</a></li>
                         <li><a href="{{ route('contact-page-banners.index') }}" class="slide-item">Manage Contact Page Banner</a></li>
+                        <li><a href="{{ route('management-page-banners.index') }}" class="slide-item">Manage Management Page Banner</a></li>
                     </ul>
                 </li>
 
