@@ -20,6 +20,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\OurServicesController;
 use App\Http\Controllers\Web\Backend\Shakhawat\DivisionWiseSecurityController;
 use App\Http\Controllers\Web\Backend\Shakhawat\AboutPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ServicePageBannerController;
+use App\Http\Controllers\Web\Backend\Shakhawat\ContactPageBannerController;
 
 
 
@@ -110,6 +111,17 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/service-page-banners/{id}', [ServicePageBannerController::class, 'update'])->name('service-page-banners.update');
     Route::post('/service-page-banners/{id}/status', [ServicePageBannerController::class, 'UpdateStatus'])->name('service-page-banners.updateStatus');
     Route::delete('/service-page-banners/{id}', [ServicePageBannerController::class, 'destroy'])->name('service-page-banners.destroy');
+
+    //Contact Page Banner Management
+    Route::get('/contact-page-banners', [ContactPageBannerController::class, 'index'])->name('contact-page-banners.index');
+    Route::get('/contact-page-banners/create', [ContactPageBannerController::class, 'create'])->name('contact-page-banners.create');
+    Route::post('/contact-page-banners', [ContactPageBannerController::class, 'store'])->name('contact-page-banners.store');
+    Route::get('/contact-page-banners/data', [ContactPageBannerController::class, 'getData'])->name('contact-page-banners.data');
+    Route::get('/contact-page-banners/{id}/show', [ContactPageBannerController::class, 'show'])->name('contact-page-banners.show');
+    Route::get('/contact-page-banners/{id}/edit', [ContactPageBannerController::class, 'edit'])->name('contact-page-banners.edit');
+    Route::post('/contact-page-banners/{id}', [ContactPageBannerController::class, 'update'])->name('contact-page-banners.update');
+    Route::post('/contact-page-banners/{id}/status', [ContactPageBannerController::class, 'UpdateStatus'])->name('contact-page-banners.updateStatus');
+    Route::delete('/contact-page-banners/{id}', [ContactPageBannerController::class, 'destroy'])->name('contact-page-banners.destroy');
 
     
 
