@@ -18,6 +18,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\GalleryController;
 use App\Http\Controllers\Web\Backend\Shakhawat\OurJourneyController;
 use App\Http\Controllers\Web\Backend\Shakhawat\OurServicesController;
 use App\Http\Controllers\Web\Backend\Shakhawat\DivisionWiseSecurityController;
+use App\Http\Controllers\Web\Backend\Shakhawat\AboutPageBannerController;
 
 
 
@@ -86,6 +87,19 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/banners/{id}', [BannerController::class, 'update'])->name('banners.update');
     Route::post('/banners/{id}/status', [BannerController::class, 'UpdateStatus'])->name('banners.updateStatus');
     Route::delete('/banners/{id}', [BannerController::class, 'destroy'])->name('banners.destroy');
+
+    //About Page Banner Management
+    Route::get('/about-page-banners', [AboutPageBannerController::class, 'index'])->name('about-page-banners.index');
+    Route::get('/about-page-banners/create', [AboutPageBannerController::class, 'create'])->name('about-page-banners.create');
+    Route::post('/about-page-banners', [AboutPageBannerController::class, 'store'])->name('about-page-banners.store');
+    Route::get('/about-page-banners/data', [AboutPageBannerController::class, 'getData'])->name('about-page-banners.data');
+    Route::get('/about-page-banners/{id}/show', [AboutPageBannerController::class, 'show'])->name('about-page-banners.show');
+    Route::get('/about-page-banners/{id}/edit', [AboutPageBannerController::class, 'edit'])->name('about-page-banners.edit');
+    Route::post('/about-page-banners/{id}', [AboutPageBannerController::class, 'update'])->name('about-page-banners.update');
+    Route::post('/about-page-banners/{id}/status', [AboutPageBannerController::class, 'UpdateStatus'])->name('about-page-banners.updateStatus');
+    Route::delete('/about-page-banners/{id}', [AboutPageBannerController::class, 'destroy'])->name('about-page-banners.destroy');
+
+    
 
     //Management Management
     Route::get('/management', [ManagementController::class, 'index'])->name('management.index');
