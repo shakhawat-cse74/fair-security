@@ -43,6 +43,7 @@
                     <ul class="slide-menu">
                         <li><a href="{{ route('banners.index') }}" class="slide-item">Manage Home Page Banner</a></li>
                         <li><a href="{{ route('about-page-banners.index') }}" class="slide-item">Manage About Page Banner</a></li>
+                        <li><a href="{{ route('service-page-banners.index') }}" class="slide-item">Manage Service Page Banner</a></li>
                     </ul>
                 </li>
 

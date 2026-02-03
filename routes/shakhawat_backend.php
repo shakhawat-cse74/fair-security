@@ -19,6 +19,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\OurJourneyController;
 use App\Http\Controllers\Web\Backend\Shakhawat\OurServicesController;
 use App\Http\Controllers\Web\Backend\Shakhawat\DivisionWiseSecurityController;
 use App\Http\Controllers\Web\Backend\Shakhawat\AboutPageBannerController;
+use App\Http\Controllers\Web\Backend\Shakhawat\ServicePageBannerController;
 
 
 
@@ -98,6 +99,17 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::post('/about-page-banners/{id}', [AboutPageBannerController::class, 'update'])->name('about-page-banners.update');
     Route::post('/about-page-banners/{id}/status', [AboutPageBannerController::class, 'UpdateStatus'])->name('about-page-banners.updateStatus');
     Route::delete('/about-page-banners/{id}', [AboutPageBannerController::class, 'destroy'])->name('about-page-banners.destroy');
+
+    //Service Page Banner Management
+    Route::get('/service-page-banners', [ServicePageBannerController::class, 'index'])->name('service-page-banners.index');
+    Route::get('/service-page-banners/create', [ServicePageBannerController::class, 'create'])->name('service-page-banners.create');
+    Route::post('/service-page-banners', [ServicePageBannerController::class, 'store'])->name('service-page-banners.store');
+    Route::get('/service-page-banners/data', [ServicePageBannerController::class, 'getData'])->name('service-page-banners.data');
+    Route::get('/service-page-banners/{id}/show', [ServicePageBannerController::class, 'show'])->name('service-page-banners.show');
+    Route::get('/service-page-banners/{id}/edit', [ServicePageBannerController::class, 'edit'])->name('service-page-banners.edit');
+    Route::post('/service-page-banners/{id}', [ServicePageBannerController::class, 'update'])->name('service-page-banners.update');
+    Route::post('/service-page-banners/{id}/status', [ServicePageBannerController::class, 'UpdateStatus'])->name('service-page-banners.updateStatus');
+    Route::delete('/service-page-banners/{id}', [ServicePageBannerController::class, 'destroy'])->name('service-page-banners.destroy');
 
     
 
