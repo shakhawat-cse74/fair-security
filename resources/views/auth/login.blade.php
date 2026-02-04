@@ -96,7 +96,7 @@
                             <div class="col col-login mx-auto text-center">
                                 <a class="header-brand1" href="{{ route('dashboard') }}">
                                     <img src="{{ asset($systemSettings->system_logo ?? 'uploads/systems/logo/default-logo.png') }}"
-                                        class="header-brand-img" alt="logo" style="height: 50px; width: 200px">
+                                        class="header-brand-img rounded-circle" alt="logo" style="height: 80px; width: 80px; object-fit: cover;">
                                 </a>
                             </div>
                             <div class="wrap-input100 validate-input"
