@@ -5,7 +5,8 @@
         <div class="side-header">
             <a class="header-brand1" href="{{ route('dashboard') }}">
                 <img src="{{ asset($systemSettings->system_logo ?? 'uploads/systems/logo/default-logo.png') }}"
-                     class="header-brand-img" alt="logo" style="height: 50px; width: 600px">
+                     class="header-brand-img rounded-circle shadow-sm" alt="logo" 
+                     style="height: 80px; width: 80px; object-fit: cover; border: 2px solid #fff; margin-top: -10px;">
             </a>
         </div>
         <div class="main-sidemenu">
@@ -212,7 +213,8 @@
                     </a>
                     <ul class="slide-menu">
                         <li><a href="{{ route('profile.index') }}" class="slide-item">Profile Setting</a></li>
-                        <li><a href="{{ route('settings.mail') }}" class="slide-item">Mail Setting</a></li>
+                        <li><a href="{{ route('system-settings.edit') }}" class="slide-item">System Setting</a>
+                        <!-- <li><a href="{{ route('settings.mail') }}" class="slide-item">Mail Setting</a></li> -->
                     </ul>
                 </li>
 

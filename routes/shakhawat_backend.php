@@ -24,6 +24,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\ContactPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\ManagementPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\SecurityPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\CertificationPageBannerController;
+use App\Http\Controllers\Web\Backend\Shakhawat\SystemSettingController;
 
 
 
@@ -251,5 +252,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         Route::post('/division-wise-security/{id}', [DivisionWiseSecurityController::class, 'update'])->name('division-wise-security.update');
         Route::post('/division-wise-security/{id}/status', [DivisionWiseSecurityController::class, 'updateStatus'])->name('division-wise-security.updateStatus');
         Route::delete('/division-wise-security/{id}', [DivisionWiseSecurityController::class, 'destroy'])->name('division-wise-security.destroy');
+
+        //System Settings
+        Route::get('/system-settings', [SystemSettingController::class, 'edit'])->name('system-settings.edit');
+        Route::post('/system-settings', [SystemSettingController::class, 'update'])->name('system-settings.update');
         
 });

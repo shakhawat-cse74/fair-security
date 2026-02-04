@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\SecurityPageBanner;
 use App\Traits\ApiResponse;
 
-class SecuritytPageBannerController extends Controller
+class SecurityPageBannerController extends Controller
 {
     use ApiResponse;
 

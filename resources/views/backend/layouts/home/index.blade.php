@@ -79,27 +79,73 @@
             border-radius: 20px;
             padding: 2rem;
             color: #1a202c;
-            background: #fff;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             text-align: center;
         }
 
         .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            background: #fff;
         }
 
         .stat-card .stat-icon {
             width: 70px;
             height: 70px;
             font-size: 32px;
-            margin: 0 auto 1rem;
+            margin: 0 auto 1.5rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 15px;
-            background: #f1f5f9;
+            border-radius: 18px;
+            background: #f8fafc;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        /* ===== Badges & Status ===== */
+        .badge {
+            padding: 0.5em 1em;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .bg-success {
+            background-color: #dcfce7 !important;
+            color: #15803d !important;
+            border: 1px solid #bbf7d0;
+        }
+
+        .bg-danger {
+            background-color: #fee2e2 !important;
+            color: #b91c1c !important;
+            border: 1px solid #fecaca;
+        }
+
+        /* Pulse animation for active status */
+        .pulse-active {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
         .stat-info p {
@@ -254,12 +300,15 @@
                                 <tr>
                                     <td>
                                         <img src="{{ $partner->logo ? asset($partner->logo) : asset('admin/assets/images/default.png') }}"
-                                            alt="logo" class="rounded-circle" width="40" height="40">
+                                            alt="logo" class="rounded-3 shadow-sm" width="50" height="50" style="object-fit: cover; border: 1px solid #e9ecef;">
                                     </td>
                                     <td>{{ $partner->company_name }}</td>
                                     <td>
                                         @if($partner->status == 1)
-                                            <span class="badge bg-success">Active</span>
+                                            <span class="badge bg-success">
+                                                <span class="pulse-active"></span>
+                                                Active
+                                            </span>
                                         @else
                                             <span class="badge bg-danger">Inactive</span>
                                         @endif
