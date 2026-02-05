@@ -5,7 +5,7 @@
     @include('backend.partial.meta')
 
     <!-- TITLE -->
-    <title>{{ $systemSettings?->site_name ?? 'Lifeizz' }} - @yield('title')</title>
+    <title>{{ $systemSettings?->site_name ?? 'Fire-Security' }} - @yield('title')</title>
 
     @stack('styles')
     @include('backend.partial.style')
