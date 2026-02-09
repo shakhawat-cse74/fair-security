@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Partner;
 use Yajra\DataTables\Facades\DataTables;
 use App\Services\ImageService;
+use Exception;
 
 class PartnerController extends Controller
 {
@@ -75,6 +76,8 @@ class PartnerController extends Controller
             if ($request->hasFile('logo')) {
                 $imagePath = $imageService->uploadImage($request->file('logo'), 'uploads/partners');
                 $partner->logo = $imagePath;
+            } else {
+                $partner->logo = 'admin/assets/images/default.png';
             }
 
             $partner->save();

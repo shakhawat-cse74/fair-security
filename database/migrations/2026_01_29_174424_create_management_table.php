@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('branch_id');
             $table->string('name');
-            $table->string('Designation');
+            $table->string('designation');
             $table->string('image')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();

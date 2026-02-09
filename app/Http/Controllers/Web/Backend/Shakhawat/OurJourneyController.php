@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\OurJourney;
 use Yajra\DataTables\Facades\DataTables;
 use App\Services\ImageService;
+use Exception;
 
 class OurJourneyController extends Controller
 {

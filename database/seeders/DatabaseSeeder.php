@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        
 
         User::updateOrCreate(
             ['email' => 'admin@gmail.com'],
@@ -23,14 +23,6 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        $this->call([
-            BranchSeeder::class,
-            EmployeeSeeder::class,
-            BannerSeeder::class,
-            ManagementSeeder::class,
-        ]);
-        
-        // $this->call(SystemSettingSeeder::class);
-        // $this->call(WordSeeder::class);
+       
     }
 }
