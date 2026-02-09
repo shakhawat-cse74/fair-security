@@ -20,16 +20,11 @@
 
 <!-- Unread Messages Table -->
 <div class="card mb-4">
-    <div class="card-header d-flex justify-content-between align-items-center">
+    <div class="card-header">
         <h3 class="card-title mb-0">
             <i class="fa fa-envelope text-warning"></i> Unread Messages
             <span class="badge bg-warning text-dark ms-2" id="unread-count">0</span>
         </h3>
-        <div>
-            <button class="btn btn-info btn-sm" id="markAsReadBtn">
-                <i class="fa fa-check"></i> Mark as Read
-            </button>
-        </div>
     </div>
 
     <div class="card-body">
@@ -37,9 +32,6 @@
             <table class="table table-bordered table-striped" id="unread-table">
                 <thead>
                     <tr>
-                        <th width="5%">
-                            <input type="checkbox" id="selectAllUnread" title="Select All">
-                        </th>
                         <th width="5%">SL</th>
                         <th>Name</th>
                         <th>Email</th>
@@ -103,14 +95,6 @@ $(function() {
                 }
             },
             columns: [
-                {
-                    data: 'DT_RowId',
-                    render: function(data) {
-                        return '<input type="checkbox" class="contact-checkbox" value="' + data + '">';
-                    },
-                    orderable: false,
-                    searchable: false
-                },
                 {data: 'DT_RowIndex', orderable: false, searchable: false},
                 {data: 'name'},
                 {data: 'email'},
@@ -227,40 +211,6 @@ $(function() {
     initUnreadTable();
     initReadTable();
     updateCounts();
-
-    // Select all checkbox for unread table
-    $(document).on('click', '#selectAllUnread', function() {
-        $('.contact-checkbox').prop('checked', this.checked);
-    });
-
-    // Mark as Read Button (bulk)
-    $(document).on('click', '#markAsReadBtn', function() {
-        const selected = $('.contact-checkbox:checked').map(function() {
-            return this.value;
-        }).get();
-
-        if (selected.length === 0) {
-            toastr.warning('Please select at least one message');
-            return;
-        }
-
-        $.ajax({
-            url: "{{ route('contact.markAsRead') }}",
-            type: 'POST',
-            headers: {'X-CSRF-TOKEN': csrfToken},
-            data: {ids: selected},
-            success: function(response) {
-                toastr.success('Messages marked as read');
-                if (unreadTable) unreadTable.ajax.reload();
-                if (readTable) readTable.ajax.reload();
-                updateCounts();
-                $('#selectAllUnread').prop('checked', false);
-            },
-            error: function(response) {
-                toastr.error(response.responseJSON?.message || 'Error marking as read');
-            }
-        });
-    });
 
     // Toggle status button
     $(document).on('click', '.toggle-status', function(e) {

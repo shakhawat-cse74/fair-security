@@ -169,11 +169,20 @@ class ContactController extends Controller
     public function markAsRead(Request $request)
     {
         try {
-            $ids = $request->input('ids', []);
+            // Get ids from JSON body or form data
+            $ids = $request->input('ids');
+            
+            // If ids is a string (JSON), decode it
+            if (is_string($ids)) {
+                $ids = json_decode($ids, true);
+            }
             
             if (empty($ids)) {
                 return response()->json(['error' => 'No contacts selected'], 400);
             }
+            
+            // Ensure ids are integers
+            $ids = array_map('intval', $ids);
             
             Contact::whereIn('id', $ids)->update(['status' => 1]);
             
@@ -183,7 +192,7 @@ class ContactController extends Controller
             ]);
         } catch (\Exception $e) {
             \Log::error('Mark as read error: ' . $e->getMessage());
-            return response()->json(['error' => 'Failed to update contacts'], 500);
+            return response()->json(['error' => 'Failed to update contacts', 'details' => $e->getMessage()], 500);
         }
     }
 
