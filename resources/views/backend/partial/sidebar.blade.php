@@ -201,6 +201,20 @@
                     </ul>
                 </li>
 
+                <!-- Contact Messages -->
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="side-menu__icon me-2" viewBox="0 0 16 16">
+                            <path d="M0 1a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H0zm7 8a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-3zM1 2a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2zm1.5 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3z"/>
+                        </svg>
+                        <span class="side-menu__label">Contact Messages</span>
+                        <i class="angle fa fa-angle-right"></i>
+                    </a>
+                    <ul class="slide-menu">
+                        <li><a href="{{ route('contact.index') }}" class="slide-item">Manage Contacts</a></li>
+                    </ul>
+                </li>
+
                 <!-- System Setting -->
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="#">

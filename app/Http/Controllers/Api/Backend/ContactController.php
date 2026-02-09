@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\ContactRequest;
 use App\Models\Contact;
 use App\Traits\ApiResponse;
 
@@ -12,17 +12,10 @@ class ContactController extends Controller
 
     use ApiResponse;
 
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
         try {
-            $validatedData = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'nullable|email|max:255',
-                'phone' => 'required|string|max:20',
-                'address' => 'nullable|string|max:255',
-                'service_type' => 'required|string|max:255',
-                'message' => 'nullable|string|max:10000',
-            ]);
+            $validatedData = $request->validated();
 
             $contact = Contact::create([
                 'name' => $validatedData['name'],
@@ -35,6 +28,7 @@ class ContactController extends Controller
 
             return $this->successResponse($contact, 'Contact message submitted successfully.', 200);
         } catch (\Exception $e) {
+            \Log::error('Contact store error: ' . $e->getMessage());
             return $this->errorResponse('Failed to submit contact message.', 500);
         }
     }

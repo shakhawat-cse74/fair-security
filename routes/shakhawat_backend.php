@@ -25,6 +25,7 @@ use App\Http\Controllers\Web\Backend\Shakhawat\ManagementPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\SecurityPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\CertificationPageBannerController;
 use App\Http\Controllers\Web\Backend\Shakhawat\SystemSettingController;
+use App\Http\Controllers\Web\Backend\Shakhawat\ContactController;
 
 
 
@@ -252,6 +253,15 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         Route::post('/division-wise-security/{id}', [DivisionWiseSecurityController::class, 'update'])->name('division-wise-security.update');
         Route::post('/division-wise-security/{id}/status', [DivisionWiseSecurityController::class, 'updateStatus'])->name('division-wise-security.updateStatus');
         Route::delete('/division-wise-security/{id}', [DivisionWiseSecurityController::class, 'destroy'])->name('division-wise-security.destroy');
+
+        //Contact Messages Management
+        Route::get('/contacts', [ContactController::class, 'index'])->name('contact.index');
+        Route::get('/contacts/data', [ContactController::class, 'getData'])->name('contact.data');
+        Route::post('/contacts/mark-as-read', [ContactController::class, 'markAsRead'])->name('contact.markAsRead');
+        Route::get('/contacts/{id}/show', [ContactController::class, 'show'])->name('contact.show');
+        Route::get('/contacts/{id}/edit', [ContactController::class, 'edit'])->name('contact.edit');
+        Route::post('/contacts/{id}', [ContactController::class, 'update'])->name('contact.update');
+        Route::delete('/contacts/{id}', [ContactController::class, 'destroy'])->name('contact.destroy');
 
         //System Settings
         Route::get('/system-settings', [SystemSettingController::class, 'edit'])->name('system-settings.edit');
