@@ -35,10 +35,10 @@
                                     <input type="text" class="form-control" name="name" placeholder="Enter Name">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Description</label>
-                                    <textarea class="form-control" name="description" placeholder="Enter Description"></textarea>
+                                    <textarea class="form-control summernote" name="description" placeholder="Enter Description"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -57,4 +57,12 @@
     </div>
 @endsection
 
-
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+@endpush

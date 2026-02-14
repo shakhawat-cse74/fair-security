@@ -61,7 +61,7 @@ class OurServicesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:10000',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -69,7 +69,10 @@ class OurServicesController extends Controller
         try {
             $ourService = new OurServices();
             $ourService->name = $request->name;
-            $ourService->description = $request->description;
+            $description = $request->description;
+            $description = str_replace(array('<br>', '<br/>', '<br />'), "\n", $description);
+            $description = str_replace('</p>', "\n\n", $description);
+            $ourService->description = strip_tags($description);
             $ourService->status = $request->status ?? 1;
 
             if ($request->hasFile('image')) {
@@ -101,7 +104,7 @@ class OurServicesController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:10000',
+            'description' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -109,7 +112,10 @@ class OurServicesController extends Controller
         try {
             $ourService = OurServices::findOrFail($id);
             $ourService->name = $request->name;
-            $ourService->description = $request->description;
+            $description = $request->description;
+            $description = str_replace(array('<br>', '<br/>', '<br />'), "\n", $description);
+            $description = str_replace('</p>', "\n\n", $description);
+            $ourService->description = strip_tags($description);
             $ourService->status = $request->status ?? 1;
 
             if ($request->hasFile('image')) {

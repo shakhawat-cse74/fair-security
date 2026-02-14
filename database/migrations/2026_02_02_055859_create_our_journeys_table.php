@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('our_journeys', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('sub_title')->nullable();
+            $table->longText('sub_title')->nullable();
             $table->string('image')->nullable();
             $table->boolean('status')->default(1);
             $table->timestamps();

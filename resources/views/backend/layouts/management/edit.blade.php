@@ -89,10 +89,10 @@
                                     <input type="text" class="form-control" name="joining_date" value="{{ $management->joining_date }}">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control" name="message">{{ $management->message }}</textarea>
+                                    <textarea class="form-control summernote" name="message">{{ $management->message }}</textarea>
                                 </div>
                             </div>
                             
@@ -105,4 +105,12 @@
     </div>
 @endsection
 
-
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+@endpush

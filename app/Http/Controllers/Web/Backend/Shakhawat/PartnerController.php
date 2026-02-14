@@ -62,7 +62,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'company_name' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:10000',
+            'short_description' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -70,7 +70,10 @@ class PartnerController extends Controller
         try {
             $partner = new Partner();
             $partner->company_name = $request->company_name;
-            $partner->short_description = $request->short_description;
+            $shortDescription = $request->short_description;
+            $shortDescription = str_replace(array('<br>', '<br/>', '<br />'), "\n", $shortDescription);
+            $shortDescription = str_replace('</p>', "\n\n", $shortDescription);
+            $partner->short_description = strip_tags($shortDescription);
             $partner->status = $request->status ?? 1;
 
             if ($request->hasFile('logo')) {
@@ -102,7 +105,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'company_name' => 'nullable|string|max:255',
-            'short_description' => 'nullable|string|max:10000',
+            'short_description' => 'nullable|string',
             'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -110,7 +113,10 @@ class PartnerController extends Controller
         try {
             $partner = Partner::findOrFail($id);
             $partner->company_name = $request->company_name;
-            $partner->short_description = $request->short_description;
+            $shortDescription = $request->short_description;
+            $shortDescription = str_replace(array('<br>', '<br/>', '<br />'), "\n", $shortDescription);
+            $shortDescription = str_replace('</p>', "\n\n", $shortDescription);
+            $partner->short_description = strip_tags($shortDescription);
             $partner->status = $request->status ?? 1;
 
             if ($request->hasFile('logo')) {

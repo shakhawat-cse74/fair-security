@@ -66,7 +66,7 @@ class ManagementController extends Controller
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'employee_id' => 'nullable|string|max:100',
-            'message' => 'nullable|string|max:5000',
+            'message' => 'nullable|string',
             'joining_date' => 'nullable|date',
 
         ]);
@@ -79,7 +79,10 @@ class ManagementController extends Controller
             $management->email = $request->input('email');
             $management->phone = $request->input('phone');
             $management->employee_id = $request->input('employee_id');
-            $management->message = $request->input('message');
+            $message = $request->input('message');
+            $message = str_replace(array('<br>', '<br/>', '<br />'), "\n", $message);
+            $message = str_replace('</p>', "\n\n", $message);
+            $management->message = strip_tags($message);
             $management->joining_date = $request->input('joining_date');
 
             if ($request->hasFile('image')) {
@@ -128,7 +131,7 @@ class ManagementController extends Controller
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'employee_id' => 'nullable|string|max:100',
-            'message' => 'nullable|string|max:5000',
+            'message' => 'nullable|string',
             'joining_date' => 'nullable|date',
         ]);
 
@@ -140,7 +143,10 @@ class ManagementController extends Controller
             $management->email = $request->input('email');
             $management->phone = $request->input('phone');
             $management->employee_id = $request->input('employee_id');
-            $management->message = $request->input('message');
+            $message = $request->input('message');
+            $message = str_replace(array('<br>', '<br/>', '<br />'), "\n", $message);
+            $message = str_replace('</p>', "\n\n", $message);
+            $management->message = strip_tags($message);
             $management->joining_date = $request->input('joining_date');
 
             if ($request->hasFile('image')) {

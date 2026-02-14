@@ -29,7 +29,7 @@
                         @csrf
                         <div class="row">
                             
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Company Name</label>
                                     <input type="text" class="form-control" name="company_name" value="{{ $partner->company_name }}">
@@ -39,7 +39,7 @@
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Short Description</label>
-                                    <textarea class="form-control" name="short_description">{{ $partner->short_description }}</textarea>
+                                    <textarea class="form-control summernote" name="short_description">{{ $partner->short_description }}</textarea>
                                 </div>
                             </div>
                             
@@ -59,5 +59,15 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+@endpush
 
 

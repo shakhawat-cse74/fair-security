@@ -62,7 +62,7 @@ class MissionController extends Controller
     {
         $request->validate([
             'title' => 'nullable|string|max:255',
-            'sub_title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -70,7 +70,10 @@ class MissionController extends Controller
         try {
             $mission = new Mission();
             $mission->title = $request->title;
-            $mission->sub_title = $request->sub_title;
+            $subTitle = $request->sub_title;
+            $subTitle = str_replace(array('<br>', '<br/>', '<br />'), "\n", $subTitle);
+            $subTitle = str_replace('</p>', "\n\n", $subTitle);
+            $mission->sub_title = strip_tags($subTitle);
             $mission->status = $request->status ?? 1;
 
             if ($request->hasFile('image')) {
@@ -102,7 +105,7 @@ class MissionController extends Controller
     {
         $request->validate([
             'title' => 'nullable|string|max:255',
-            'sub_title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -110,7 +113,10 @@ class MissionController extends Controller
         try {
             $mission = Mission::findOrFail($id);
             $mission->title = $request->title;
-            $mission->sub_title = $request->sub_title;
+            $subTitle = $request->sub_title;
+            $subTitle = str_replace(array('<br>', '<br/>', '<br />'), "\n", $subTitle);
+            $subTitle = str_replace('</p>', "\n\n", $subTitle);
+            $mission->sub_title = strip_tags($subTitle);
             $mission->status = $request->status ?? 1;
 
             if ($request->hasFile('image')) {

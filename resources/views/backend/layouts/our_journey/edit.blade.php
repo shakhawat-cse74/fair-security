@@ -29,16 +29,16 @@
                         @csrf
                         <div class="row">
                             
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Title</label>
                                     <input type="text" class="form-control" name="title" value="{{ $ourJourney->title }}">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Sub Title</label>
-                                    <input type="text" class="form-control" name="sub_title" value="{{ $ourJourney->sub_title }}">
+                                    <textarea class="form-control summernote" name="sub_title">{{ $ourJourney->sub_title }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -57,5 +57,15 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+@endpush
 
 

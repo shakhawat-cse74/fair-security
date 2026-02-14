@@ -89,10 +89,10 @@
                                     <input type="date" class="form-control" name="joining_date" placeholder="Enter Joining Date">   
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">Message</label>
-                                    <textarea class="form-control" name="message" placeholder="Enter Message"></textarea>
+                                    <textarea class="form-control summernote" name="message" placeholder="Enter Message"></textarea>
                                 </div>
                             </div>
                             
@@ -107,4 +107,12 @@
     </div>
 @endsection
 
-
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200
+            });
+        });
+    </script>
+@endpush

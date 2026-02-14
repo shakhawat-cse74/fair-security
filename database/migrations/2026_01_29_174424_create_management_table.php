@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('employee_id')->nullable();
-            $table->string('message')->nullable();
+            $table->longText('message')->nullable();
             $table->date('joining_date')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();

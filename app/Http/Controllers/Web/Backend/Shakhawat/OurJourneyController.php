@@ -62,7 +62,7 @@ class OurJourneyController extends Controller
     {
         $request->validate([
             'title' => 'nullable|string|max:255',
-            'sub_title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -70,7 +70,10 @@ class OurJourneyController extends Controller
         try {
             $ourJourney = new OurJourney();
             $ourJourney->title = $request->title;
-            $ourJourney->sub_title = $request->sub_title;
+            $subTitle = $request->sub_title;
+            $subTitle = str_replace(array('<br>', '<br/>', '<br />'), "\n", $subTitle);
+            $subTitle = str_replace('</p>', "\n\n", $subTitle);
+            $ourJourney->sub_title = strip_tags($subTitle);
             $ourJourney->status = $request->status ?? 1;
 
             if ($request->hasFile('image')) {
@@ -102,7 +105,7 @@ class OurJourneyController extends Controller
     {
         $request->validate([
             'title' => 'nullable|string|max:255',
-            'sub_title' => 'nullable|string|max:255',
+            'sub_title' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:10240',
             'status' => 'nullable|boolean',
         ]);
@@ -110,7 +113,10 @@ class OurJourneyController extends Controller
         try {
             $ourJourney = OurJourney::findOrFail($id);
             $ourJourney->title = $request->title;
-            $ourJourney->sub_title = $request->sub_title;
+            $subTitle = $request->sub_title;
+            $subTitle = str_replace(array('<br>', '<br/>', '<br />'), "\n", $subTitle);
+            $subTitle = str_replace('</p>', "\n\n", $subTitle);
+            $ourJourney->sub_title = strip_tags($subTitle);
             $ourJourney->status = $request->status ?? 1;
 
             if ($request->hasFile('image')) {
