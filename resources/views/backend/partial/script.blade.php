@@ -64,6 +64,33 @@
  <!-- Toastr JS -->
  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+ <!-- Global Toastr Configuration & Session Flash Handler -->
+ <script>
+     // Configure toastr options
+     toastr.options = {
+         "closeButton": true,
+         "progressBar": true,
+         "positionClass": "toast-top-right",
+         "showDuration": "300",
+         "hideDuration": "1000",
+         "timeOut": "3000",
+         "extendedTimeOut": "1000",
+         "showEasing": "swing",
+         "hideEasing": "linear",
+         "showMethod": "fadeIn",
+         "hideMethod": "fadeOut"
+     };
+
+     // Show session flash messages as toastr popups
+     @if(session('success'))
+         toastr.success("{{ session('success') }}");
+     @endif
+
+     @if(session('error'))
+         toastr.error("{{ session('error') }}");
+     @endif
+ </script>
+
  <!-- SweetAlert JS -->
  <script src="{{ asset('/') }}admin/assets/plugins/sweet-alert/sweetalert.min.js"></script>
 
